@@ -1,0 +1,34 @@
+<div class="dashboard-container">
+
+  <app-header/>
+ 
+  <div class="dashboard-content">
+    <app-side-bar/>
+    <main class="main-content">
+      <div class="msg">
+        <h4>Welcome, {{ user?.name | uppercase}}!</h4>
+        <p>join live streaming sessions</p>
+      </div>
+      <br>
+      
+      <div class="stream-pipe">
+        <div class="stream-content" *ngFor="let vid of videos">
+          <video #videoPlayer [src]="vid.url" [poster]="vid.poster" width="38%"muted></video>
+          
+          <div class="stream-details">
+            <span class="stream-title">
+              <h3>{{ vid.title }}</h3>
+              <p>{{ vid.url }}</p>
+              
+              <button class="watch-btn" (click)="toggleVideo(videoPlayer)">
+                {{ videoPlayer.paused ? 'Watch Now' : 'Pause' }}
+              </button>
+            </span>
+          </div>
+        </div>
+      </div>
+      
+    </main>
+  </div>
+
+</div>

@@ -1,0 +1,60 @@
+<div class="dashboard-container">
+  <app-header></app-header>
+  
+  <div class="dashboard-content">
+    <app-side-bar></app-side-bar>
+    
+    <main class="main-content">
+      <div class="welcome-section">
+        <h2>{{ greeting }}, {{ studentProfile?.name }}!</h2>
+        <p>Your journey to mindfulness continues here.</p>
+      </div>
+
+      <div class="student-grid">
+        <div class="admin-card progress-card">
+          <div class="card-icon">🧘‍♂️</div>
+          <h3>Learning Progress</h3>
+          <div class="progress-bar-container">
+            <div class="progress-bar" [style.width.%]="progressPercentage"></div>
+          </div>
+          <p>{{ learningProgress.completedLessons }} / {{ learningProgress.totalLessons}} Lessons Completed</p>
+        </div>
+
+        <div class="admin-card stats-card">
+          <div class="card-icon">🔥Daily Streak</div>
+          <br>
+          <p class="stat-number">{{ learningProgress.streak }} Days</p>
+          <br/>
+          <p>Keep up the great work!</p>
+        </div>
+
+        <div class="admin-card level-card">
+          <div class="card-icon">🏆</div>
+          <h3 style="margin-top: 2px;padding-top: 5px;margin-bottom: 0;">Current Status</h3>
+          <div style="display: grid;">
+            <p class="stat-text">{{ status }}</p>
+            <div class="status-btn-container">
+              <button class="watch-btn" (click)="GetLessons()">curriculum</button>
+              <button class="reset-btn" (click)="reset()">reset</button>  
+            </div>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="syllabus">
+        <button class="topic" *ngFor="let item of subjects,let i = index" type="submit" (click)="openTopic(item)">
+          <div style="font-size: 20px; margin-bottom: 10px;">🧘</div>
+          <p style="font-size: 18px; margin-bottom: 10px;font-weight: 510;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">Exercise {{i+1}}</p>
+        </button>
+      </div>
+
+      <app-topic-modal 
+      *ngIf="isModalOpen" 
+      [place]=indexing
+      (onClose)="closeModal()">
+    </app-topic-modal>
+
+    </main>
+  </div>
+</div>

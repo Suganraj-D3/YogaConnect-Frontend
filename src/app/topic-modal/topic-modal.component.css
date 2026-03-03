@@ -1,0 +1,119 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  backdrop-filter: blur(2px);
+}
+
+.modal-card {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 450px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+  text-align: center;
+}
+
+
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+.close-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #999;
+}
+
+.yoga-icon {
+  font-size: 50px;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.start-btn {
+  width: 100%;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+@keyframes slideIn {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+
+
+.lesson-text {
+  background: #fdfdfd;
+  padding: 15px;
+  border-left: 5px solid #4CAF50;
+  margin: 10px 0;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.progress-badge {
+  display: inline-block;
+  background: #e8f5e9;
+  color: #2e7d32;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+}
+
+.alert-message {
+  text-align: center;
+  color: #d32f2f;
+  font-weight: bold;
+  padding: 20px;
+}
+
+
+.content-container {
+  text-align: left;
+  animation: slideIn 0.3s ease-out;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 10px;
+}
+
+.lesson-details h4 {
+  margin: 15px 0 5px 0;
+  color: #1a1a1a;
+  border-bottom: 2px solid #22c55e;
+  display: inline-block;
+}
+
+.alert-message {
+  background: #fff5f5;
+  border: 1px solid #feb2b2;
+  color: #c53030;
+  padding: 10px;
+  border-radius: 6px;
+  margin: 10px 0;
+}

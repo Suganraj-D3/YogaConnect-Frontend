@@ -1,0 +1,167 @@
+<div class="dashboard-container">
+  <app-header />
+
+  <div class="dashboard-content">
+    <app-side-bar />
+    <main class="main-content">
+      <h3>Welcome To {{ user?.name | titlecase }} Playground !</h3>
+      <p><i>Control for order, access for growth</i></p>
+      <br/>
+
+      <div class="admin-page-wrapper">
+        <div class="admin-card">
+          <br/>
+          <div style="color: #22c55e; font-size: 30px; margin-bottom: 10px">
+            👤
+          </div>
+
+          <p class="sub-title">Register YogaConnect Member</p>
+
+          <form (submit)="onAddUser()" #userForm="ngForm">
+            <div class="form-group">
+              <input
+                [(ngModel)]="newUser.username"
+                name="username"
+                placeholder="Username"
+                required
+              />
+              <input
+                [(ngModel)]="newUser.email"
+                name="email"
+                type="email"
+                placeholder="Email Address"
+                required
+              />
+              <input
+                [(ngModel)]="newUser.firstName"
+                name="firstName"
+                placeholder="First Name"
+                required
+              />
+              <input
+                [(ngModel)]="newUser.lastName"
+                name="lastName"
+                placeholder="Last Name"
+                autocomplete="Lastname" 
+                required
+              />
+            </div>
+
+            <div class="form-group">
+              <input
+                [(ngModel)]="newUser.password"
+                name="password"
+                type="password"
+                placeholder="Password"
+                autocomplete="current-password"
+                required
+              />
+
+              <select [(ngModel)]="selectedRole" name="role">
+                <option value="student">Student</option>
+                <option value="admin">Administrator</option>
+              </select>
+            </div>
+
+            <button
+              type="submit"
+              [disabled]="!userForm.valid"
+              class="watch-btn"
+            >
+              Assign & Create User
+            </button>
+          </form>
+
+          <p class="status-msg" *ngIf="message" [class.error]="isError">
+            {{ message }}
+          </p>
+        </div>
+
+        <div class="admin-card">
+          
+          <br>
+          <div style="color: #22c55e; font-size: 30px; margin-bottom: 10px">
+            👥
+          </div>
+          <p class="sub-title">YogaConnect Members</p>
+
+          <div class="user-list-container">
+            <table class="user-table">
+              <thead>
+                <tr>
+                  <th>Username</th>
+                  <th>Full Name</th>
+                  <th style="text-align: right">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let u of allUsers">
+                  <td>
+                    <span style="font-weight: 500">{{ u.username }}</span>
+                    <div style="font-size: 11px; color: #6b7280">
+                      {{ u.email }}
+                    </div>
+                  </td>
+                  <td>
+                    {{ u.firstName | titlecase }} {{ u.lastName | titlecase }}
+                  </td>
+                  <td style="text-align: right">
+                    <button class="small-btn" (click)="selectUserForEdit(u)">
+                      Edit Profile
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="admin-card" *ngIf="selectedUser"  #editSection>
+          <div style="color: #22c55e; font-size: 30px; margin-bottom: 10px">
+            📝
+          </div>
+          <h2>Edit: {{ selectedUser.username }}</h2>
+
+          <form (submit)="onUpdate()">
+            <div class="form-group">
+              <input
+                [(ngModel)]="editData.firstName"
+                name="fn"
+                placeholder="First Name"
+              />
+              <input
+                [(ngModel)]="editData.lastName"
+                name="ln"
+                placeholder="Last Name"
+              />
+              <input
+                [(ngModel)]="editData.email"
+                name="em"
+                placeholder="Email"
+              />
+
+              <label style="text-align: left; font-size: 12px; color: #666"
+                >Change User Role:</label
+              >
+              <select [(ngModel)]="selectedRole" name="editRole">
+                <option value="student">Student</option>
+                <option value="admin">Administrator</option>
+              </select>
+            </div>
+
+            <button type="submit" class="watch-btn">
+              Update Member & Role
+            </button>
+            <button
+              type="button"
+              class="cancel-btn"
+              (click)="selectedUser = null"
+            >
+              Cancel
+            </button>
+          </form>
+        </div>
+      </div>
+    </main>
+  </div>
+</div>

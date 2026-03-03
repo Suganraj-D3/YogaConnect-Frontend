@@ -1,0 +1,41 @@
+<div class="modal-overlay" (click)="close()">
+  <div class="modal-card" (click)="$event.stopPropagation()">
+    <div class="modal-header">
+      <h3>Chapter {{place + 1}}</h3>
+      <button class="close-btn" (click)="close()">&times;</button>
+    </div>
+
+    <div class="modal-body">
+      <div *ngIf="!showContent">
+        <div class="yoga-icon">🧘‍♂️</div>
+        <p>Ready to begin your <strong>Exercise {{ place + 1 }}</strong> session?</p>
+        <p class="subtitle">{{ oneline }}</p>
+      </div>
+
+      <div *ngIf="showContent" class="content-container">
+        <div *ngIf="serverMessage" class="alert-message">
+          {{ serverMessage }}
+        </div>
+
+        <div *ngIf="lessonData" class="lesson-details">
+          <h4>{{ lessonData.title }}</h4>
+          <div class="lesson-text">
+            {{ lessonData.content }}
+          </div>
+          <div class="progress-badge">
+            🏆 You've completed {{ lessonData.progress }} lessons!
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal-footer">
+      <button *ngIf="!showContent" class="start-btn" (click)="GetLessonMessage(place)">
+        Start Practice
+      </button>
+      <button *ngIf="showContent" class="start-btn" (click)="close()" style="background-color: #6366f1;">
+        Finish & Close
+      </button>
+    </div>
+  </div>
+</div>

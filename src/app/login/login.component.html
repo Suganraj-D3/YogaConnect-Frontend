@@ -1,0 +1,40 @@
+  <div class="Login-container" *ngIf="!auth.isLoggedIn()">
+    <span class="human-icon-container">
+      <p class="human-icon"> 
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="green" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+        <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </p>  
+    </span>
+    <h2>Welcome to {{title}}</h2>
+    <p style="color: gray;">Sign in to continue</p>
+    <br>
+    <form (ngSubmit)="onLogin()" #loginForm="ngForm">
+ <label>User name:</label>
+    <input type="text"
+           name="username"
+           [(ngModel)]="username"
+           autocomplete="username"
+           required>
+
+    <br>
+    <label>Password:</label>
+    <input type="password"
+           name="password"
+           [(ngModel)]="password"
+           autocomplete="new-password"
+           required>
+    <br>
+    <button type="submit">Login</button>
+    </form>
+    <br>
+    <p>Don't have an account? <a href="#" class="create-link">Contact Admin</a></p>
+    <p *ngIf="errorMessage" style="color:red">
+    {{errorMessage}}
+  </p>
+  </div>
+
+<div *ngIf="auth.isLoggedIn()">
+  <router-outlet></router-outlet>
+</div>
